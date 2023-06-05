@@ -4,7 +4,7 @@ import LeftMenu from "@/components/leftMenu"
 import Main from "@/components/main"
 import MusicPlayer from "@/components/musicPlay"
 
-import "./index.css"
+import "./index.scss"
 
 export default function Layout() {
   // const navigate = useNavigate()
