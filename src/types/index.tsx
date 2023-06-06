@@ -20,7 +20,7 @@ export type MenuType = {
   label: string
   key: string
   icon: ReactNode
-  children: MenuType[]
+  items: MenuType[]
 }
 
 export enum StorageKeys {

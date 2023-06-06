@@ -2,8 +2,7 @@
 
 import LeftMenu from "@/components/leftMenu"
 import Main from "@/components/main"
-import MusicPlayer from "@/components/musicPlay"
-
+import FooterMusic from "@/components/footer"
 import "./index.scss"
 
 export default function Layout() {
@@ -16,7 +15,7 @@ export default function Layout() {
         <LeftMenu></LeftMenu>
         <Main></Main>
       </div>
-      <MusicPlayer></MusicPlayer>
+      <FooterMusic></FooterMusic>
     </div>
   )
 }

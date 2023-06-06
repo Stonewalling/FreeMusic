@@ -1,35 +1,46 @@
 /*
  * @Author: David
  * @Date: 2023-06-03 10:18:04
- * @LastEditTime: 2023-06-03 13:36:46
+ * @LastEditTime: 2023-06-06 15:52:02
  * @LastEditors: David
  * @Description: 增删左侧菜单栏
- * @FilePath: \music\src\components\leftMenu\changeMenu.tsx
+ * @FilePath: /FreeMusic/src/components/leftMenu/changeMenu.tsx
  * 可以输入预定的版权声明、个性签名、空行等
  */
-import { forwardRef, useImperativeHandle, useState } from "react"
+import { ReactElement, forwardRef, useImperativeHandle, useState } from "react"
+import { CustomerServiceOutlined } from "@ant-design/icons"
 import { Menu } from "antd"
-const { SubMenu } = Menu
 
 export interface MenuDataItem {
-  title: string
+  type?: string
+  label: string
   key: string
   children?: MenuDataItem[]
+  icon?: ReactElement
 }
 
-const initialMenuData: MenuDataItem[] = [
+let initialMenuData: MenuDataItem[] = [
   {
-    title: "平台聚合",
+    type: "group",
+    label: "平台聚合",
     key: "plate",
-    children: [{ title: "精选歌单", key: "plateForm" }],
+    children: [
+      {
+        label: "精选歌单",
+        key: "plateForm",
+        icon: <CustomerServiceOutlined rev={undefined} />,
+      },
+    ],
   },
   {
-    title: "我的音乐",
+    type: "group",
+    label: "我的音乐",
     key: "myMusic",
     children: [],
   },
   {
-    title: "创建的歌单",
+    type: "group",
+    label: "创建的歌单",
     key: "myMusicForm",
     children: [],
   },
@@ -69,15 +80,8 @@ const SidlerMenu = forwardRef<SidlerMenuRef, SidlerMenuProps>((props, ref) => {
       <Menu
         mode="inline"
         defaultOpenKeys={defaultOpenKeys}
-        defaultSelectedKeys={["plateForm"]}>
-        {menuData.map((menu) => (
-          <SubMenu key={menu.key} title={menu.title}>
-            {menu.children?.map((submenu) => (
-              <Menu.Item key={submenu.key}>{submenu.title}</Menu.Item>
-            ))}
-          </SubMenu>
-        ))}
-      </Menu>
+        defaultSelectedKeys={["plateForm"]}
+        items={initialMenuData}></Menu>
     </>
   )
 })
