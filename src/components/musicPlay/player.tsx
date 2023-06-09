@@ -1,19 +1,13 @@
 /*
  * @Author: David
  * @Date: 2023-06-05 21:37:11
- * @LastEditTime: 2023-06-06 16:47:08
+ * @LastEditTime: 2023-06-09 10:54:46
  * @LastEditors: David
  * @Description: 音乐播放器对象
  * @FilePath: /FreeMusic/src/components/musicPlay/player.tsx
  * 可以输入预定的版权声明、个性签名、空行等
  */
 import MusicPlayerMain from "./template"
-
-function createInvoker(callback: any) {
-  const invoker = (e: any) => invoker.value(e)
-  invoker.value = callback
-  return callback
-}
 
 class MusicPlayer extends HTMLElement {
   audioElement: any
@@ -24,12 +18,14 @@ class MusicPlayer extends HTMLElement {
     this.shadowRoot = this.attachShadow({ mode: "open" })
     this.shadowRoot.innerHTML = MusicPlayerMain({ src: "" })
     this.audioElement = this.shadowRoot.querySelector("#player")
-    this.shadowRoot
-      .querySelector("#play")
-      ?.addEventListener("click", () => this.play())
-    this.shadowRoot
-      .querySelector("#pause")
-      ?.addEventListener("click", () => this.pause())
+    const playerButton = this.shadowRoot.querySelector("#playButton")
+    playerButton?.addEventListener("click", () => {
+      if (this.audioElement.paused) {
+        this.audioElement.play()
+      } else {
+        this.audioElement.pause()
+      }
+    })
   }
 
   static get observedAttributes() {
