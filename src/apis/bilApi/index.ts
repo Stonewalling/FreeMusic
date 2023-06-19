@@ -1,4 +1,4 @@
-import { BilSearchAll } from "@/types/bilAPi"
+// import { BilSearchAll } from "@/types/bilAPi"
 import request from "@/utils/myAxios"
 
 const prefixWorld = "/baseAPi/"
